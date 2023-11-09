@@ -5,26 +5,35 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Card } from 'react-bootstrap';
 import AOS from "aos";
 import 'aos/dist/aos.css'
 import { useEffect } from 'react';
 import Detaildata from './Detaildata.json';
 import { useParams } from 'react-router';
-import Card from 'react-bootstrap/Card';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Accessories1 = () => {
 
-    let { id } = useParams();
+
+const Accessories1 = () => {
+    let { name } = useParams();
 
     useEffect(() => {
         AOS.init({ duration: 2000 })
 
     }, [])
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
+
+
     return (
         <>
             <div className="nav">
+
                 <Navbar className="bg-body-tertiary " fixed="top" expand="lg">
                     <Container fluid className="nav">
 
@@ -84,9 +93,7 @@ const Accessories1 = () => {
                                         </NavDropdown.Item>
                                     </NavDropdown>
                                 </NavDropdown>
-                                <Nav.Link href="/Contact">Contact Us</Nav.Link>
-                                <Nav.Link href="/Aboutus">About Us</Nav.Link>
-                                <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control
@@ -94,8 +101,10 @@ const Accessories1 = () => {
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
+                                    value={search}
+                                    onChange={(event) => { searchbox(event) }}
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
                             </Form>
                         </Navbar.Collapse>
 
@@ -103,57 +112,34 @@ const Accessories1 = () => {
                     </Container>
                 </Navbar>
             </div>
-            <Container>
-                {Detaildata.map((item) => {
-                    item.id = Number(item.id)
-                    id = Number(id)
-                    return item.id === id ?
-                        <div className='all-details' key={Math.floor(Math.random() * 10000)}>
-                            <div className='top-content-details'>
-                                <div className='image-details'>
-                                    <img src={require(`${item.picture}`)} alt='name' style={{ width: '90%' }}></img>
-                                </div>
-                                <div className='content-details'>
-                                    <div className='name-details'>
-                                        <h1>{item.name}</h1>
-                                        <p>{item.code}</p>
-                                    </div>
-                                    <div className='price-details'>
-                                        <h2>{item.price}</h2>
-                                    </div>
-                                    <div>
-                                        <p>Ships directly from manufacturer - departs in about 3 weeks</p>
-                                    </div>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
-                                </div>
-                            </div>
-                            <div>
-                                <p>{item.desc}</p>
-                            </div>
-                            <div className='content-text'>
-                                <h1>The 4 Best Gardening Books of 2023</h1>
-                                <p>These home gardening books can help you grow beautiful, bountiful crops</p>
-                            </div>
-                            <div className="product1 aninmation" data-aos='fade-up'>
-                                {Detaildata.map((item) => {
-                                    return item.id > 97 && item.id <= 102 ? <Card style={{ width: '17rem' }} key={Math.floor(Math.random() * 10000)}>
-                                        <Card.Img variant="top" src={require(`${item.picture}`)} />
-                                        <Card.Body>
-                                            <Card.Title>{item.name}</Card.Title>
-                                            <Card.Text>
-                                                {item.price}
-                                            </Card.Text>
-                                            <Button variant="primary" className='me-3'>Add To Cart</Button>
-                                            <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
-                                        </Card.Body>
-                                    </Card> : []
-                                })}
-                            </div>
-                        </div> : []
-                })}
-            </Container>
 
-            <div className="footer">
+            <div className="product-main">
+                <div className="product">
+                    <div className="title">
+                        <p className='mediumtext boldtext'></p>
+                    </div>
+                    <div className="product1 aninmation responsive-1100-product" data-aos='fade-up'>
+                        {Detaildata.map((item) => {
+                            return item.name.toLowerCase().includes(name.toLowerCase()) ? <Card style={{ width: '18rem' }} key={Math.floor(Math.random() * 10000)}>
+                                <Card.Img variant="top" src={require(`${item.picture}`)} />
+                                <Card.Body>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Text>
+                                        {item.price}
+                                    </Card.Text>
+                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+
+                                </Card.Body>
+                            </Card> : []
+                        })}
+                    </div>
+
+
+
+                </div>
+
+                <div className="footer">
         <div className="footer-logo">
           <p className="greentext boldtext bigtext">Garden World</p>
         </div>
@@ -173,6 +159,10 @@ const Accessories1 = () => {
           </div>
         </div>
       </div>
+
+
+
+            </div>
         </>
     )
 }

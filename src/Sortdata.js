@@ -9,12 +9,10 @@ import Card from 'react-bootstrap/Card';
 import AOS from "aos";
 import 'aos/dist/aos.css'
 import { useEffect } from 'react';
-import Detaildata from './Detaildata.json'
+import Detaildata from './Detaildata.json';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-
-
-
+import { useState } from 'react';
 
 
 const Accessories1 = () => {
@@ -25,23 +23,12 @@ const Accessories1 = () => {
         AOS.init({ duration: 2000 })
 
     }, [])
+    const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
 
-    
 
-    /*let items = Detaildata.filter((items) => items.title === name)
-    console.log(items);
-
-    // let b = Detaildata.filter((b) => b.id === id);
-    //  b = b[0];
-
-    const PER_PAGE = 4;
-    const [currentPage, setcurrentPage] = useState(1);
-    const handlePageClick = ({ seLected: seLecTedPage }) => { setcurrentPage(seLecTedPage);
-    };
-    //const offset = currentPage*PER_PAGE;
-    //const currentPageData = items.slice(offset, offset + PER_PAGE);
-    const pageCount = Math.ceil(items.length / PER_PAGE);
-    */
     return (
         <>
             <div className="nav">
@@ -104,7 +91,9 @@ const Accessories1 = () => {
                                         </NavDropdown.Item>
                                     </NavDropdown>
                                 </NavDropdown>
-                                <Nav.Link href="/ContactUs">Contact Us</Nav.Link>
+                                <Nav.Link href="/Contact">Contact Us</Nav.Link>
+                                <Nav.Link href="/Aboutus">About Us</Nav.Link>
+                                <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control
@@ -112,8 +101,10 @@ const Accessories1 = () => {
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
+                                    value={search}
+                                    onChange={(event) => { searchbox(event) }}
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
                             </Form>
                         </Navbar.Collapse>
 
@@ -121,15 +112,14 @@ const Accessories1 = () => {
                     </Container>
                 </Navbar>
             </div>
-            <Container fluid='md'>
             <div className="product-main">
                 <div className="product">
                     <div className="title">
                         <p className='mediumtext boldtext'>{name}</p>
                     </div>
-                    <div className="product1 aninmation" data-aos='fade-up'>
+                    <div className="product1 aninmation responsive-1100-product" data-aos='fade-up'>
                         {Detaildata.map((item) => {
-                            return item.title === name ? <Card style={{ width: '17rem' }} key={Math.floor(Math.random() * 10000)}>
+                            return item.title === name ? <Card style={{ width: '18rem' }} key={Math.floor(Math.random() * 10000)}>
                                 <Card.Img variant="top" src={require(`${item.picture}`)} />
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
@@ -141,34 +131,30 @@ const Accessories1 = () => {
                                 </Card.Body>
                             </Card> : []
                         })}
-                    </div>
-                </div>
 
-                </div>
-            </Container>
-            <div className="footer">
-                    <div className="footer-logo">
-                        <p className="greentext boldtext bigtext">Garden World</p>
-                    </div>
-                    <div className="whitetext footer-contain">
-                        <div className="footer-contact">
-                            <p className="boldtext mediumtext">Get in touch</p>
-                            <p>14 Tottenham Road, N1 4EP
-                                London, United Kingdom</p>
-                            <p>00419-306-2667</p>
-                            <p>iamsteelthemes@gmail.com</p>
-                        </div>
-                        <div className="footer-timework">
-                            <p className="boldtext mediumtext">Work time</p>
-                            <p>Mon - Sat 8.00 - 18.00
-                                Sunday - OPEN</p>
-                            <p>Mon - Sat 8.00 - 18.00
-                                Sunday - OPEN</p>
-                            <p>Mon - Sat 8.00 - 18.00
-                                Sunday - OPEN</p>
-                        </div>
                     </div>
                 </div>
+                <div className="footer">
+        <div className="footer-logo">
+          <p className="greentext boldtext bigtext">Garden World</p>
+        </div>
+        <div className="whitetext footer-contain">
+          <div className="footer-contact">
+            <p className="boldtext mediumtext">Get in touch</p>
+            <p><i class="bi bi-geo-alt"></i>391A Đ. Nam Kỳ Khởi Nghĩa, Võ Thị Sáu, Quận 3, Thành phố Hồ Chí Minh</p>
+            <p><i class="bi bi-telephone"></i>00419-306-2667</p>
+            <p><i class="bi bi-envelope-at"></i>Fakeemail@gmail.com</p>
+          </div>
+          <div className="footer-timework">
+            <p className="boldtext mediumtext"><i class="bi bi-alarm"></i>Work time</p>
+            <p>Mon - Fri 8.00 - 18.00</p>
+            <p>Friday 8.00 - 12.00</p>
+            <p>Sunday - CLOSED</p>
+
+          </div>
+        </div>
+      </div>
+            </div>
         </>
     )
 }

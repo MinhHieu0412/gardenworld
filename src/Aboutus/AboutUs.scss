@@ -1,0 +1,117 @@
+.about-us{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+        &-img{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: -20%;
+            z-index: 1;
+        
+        
+
+        h1{
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            color: aliceblue;
+        }
+    }
+    &-content{
+        max-width:1200px ;
+        padding-left: 60px;
+        display: grid;
+        text-align: left;
+        justify-content: center;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto;
+        h1{
+            grid-column: 1/7;
+        }
+        &-portrait{
+            width: 80%;
+            height: auto;
+            background-image: url(../media/picture/photo5.jpg);
+        }
+        img{
+            width: 90%;
+            height: auto;
+            padding: 20px;
+        }
+        &-col1-7{
+            grid-column: 1/7;
+        }
+        &-col1-5{
+            grid-column: 1/5;
+        }
+        &-col1-3{
+            grid-column: 1/3;
+        }
+        &-col5-7{
+            grid-column: 5/7;
+        }
+        &-col3-7{
+            grid-column: 3/7;
+        }
+        &-col1-4{
+            grid-column: 1/4;
+        }
+        &-col4-7{
+            grid-column: 4/7;
+        }
+
+    }
+
+}
+.contact{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact-banner{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+    .contact-banner-cover{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        opacity: 1;
+        
+    }
+    .contact-banner-img{
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: -20%;
+        z-index: 1;
+    }
+    .contact-text{
+        
+        width: 100%;
+        height: 90px;
+        background-color:rgb(192, 176, 176, 0.5);
+    }
+
+    .contact-text h1{
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        color: aliceblue;
+        transform: translateX(-50%) translateY(50%);
+        font-size: 3rem;
+        font-weight: 600;
+    }
