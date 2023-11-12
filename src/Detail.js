@@ -22,6 +22,48 @@ const Accessories1 = () => {
 
     }, [])
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    let productIncard = localStorage.getItem("products")? JSON.parse(localStorage.getItem("products")):[]
+
+    const addTocart = (id) =>{
+        let checkProduct = productIncard.some(value => value.id ===id)
+        if(!checkProduct){
+            let product = Detaildata.find(value => value.id ===id)
+            productIncard.unshift({
+                ...product,
+                quantity: 1
+            })
+           saveToLocalStorage()
+            calculatorTotal()
+        } else{
+            let getIndex = productIncard.findIndex(value => value.id === id)
+            let product = productIncard.find(value => value.id === id)
+            productIncard[getIndex] ={
+                ...product,
+                quantity: ++product.quantity
+            }
+            saveToLocalStorage()
+            calculatorTotal()
+        }
+        alert("Successfully!");
+    
+    }
+
+    
+
+    const calculatorTotal = () => {
+        document.getElementById('total').innerHTML = productIncard.length;
+    }
+
+   
+
+    const saveToLocalStorage = () => {
+        localStorage.setItem("products", JSON.stringify(productIncard));
+    }
+
+
+
+
     return (
         <>
             <div className="nav">
@@ -87,6 +129,7 @@ const Accessories1 = () => {
                                 <Nav.Link href="/Contact">Contact Us</Nav.Link>
                                 <Nav.Link href="/Aboutus">About Us</Nav.Link>
                                 <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+                                <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control
@@ -124,7 +167,7 @@ const Accessories1 = () => {
                                     <div>
                                         <p>Ships directly from manufacturer - departs in about 3 weeks</p>
                                     </div>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
                                 </div>
                             </div>
                             <div>
@@ -143,7 +186,7 @@ const Accessories1 = () => {
                                             <Card.Text>
                                                 {item.price}
                                             </Card.Text>
-                                            <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                            <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
                                             <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
                                         </Card.Body>
                                     </Card> : []

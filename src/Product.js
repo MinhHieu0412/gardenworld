@@ -14,8 +14,14 @@ import pic1 from './media/picture/photo15.jpg'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+import React from 'react'
+
+
+
 
 const Product = () => {
+
+    
 
     useEffect(() => {
         AOS.init({ duration: 2000 })
@@ -25,6 +31,66 @@ const Product = () => {
     const searchbox = (event) => {
         setsearch(event.target.value)
     }
+
+
+    let productIncard = localStorage.getItem("products")? JSON.parse(localStorage.getItem("products")):[]
+
+    const addTocart = (id) =>{
+        let checkProduct = productIncard.some(value => value.id ===id)
+        if(!checkProduct){
+            let product = Detaildata.find(value => value.id ===id)
+            productIncard.unshift({
+                ...product,
+                quantity: 1
+            })
+           saveToLocalStorage()
+            calculatorTotal()
+        } else{
+            let getIndex = productIncard.findIndex(value => value.id === id)
+            let product = productIncard.find(value => value.id === id)
+            productIncard[getIndex] ={
+                ...product,
+                quantity: ++product.quantity
+            }
+            saveToLocalStorage()
+            calculatorTotal()
+        }
+        alert("Successfully!");
+    
+    }
+
+    
+
+    const calculatorTotal = () => {
+        document.getElementById('total').innerHTML = productIncard.length;
+    }
+
+   
+
+    const saveToLocalStorage = () => {
+        localStorage.setItem("products", JSON.stringify(productIncard));
+    }
+
+    
+   
+
+
+    /*const {shoppingCart, setShoppingCart} = useContext(CartContext);
+    const handleAddtocart = (productId) => {
+        alert(productId)
+        let newShoppingCart = [...shoppingCart];
+        const productInCart = newShoppingCart.filter((product) => product.id === productId);
+        if(productInCart.length !== 0){
+            newShoppingCart = newShoppingCart.filter((product) => product.id !== productId)
+            newShoppingCart.push({'id':productId, 'quantity':productInCart[0].quantity + 1})
+        }
+        else{
+            newShoppingCart.push({'id':productId, 'quantity': 1});
+        }   
+        console.log(newShoppingCart);
+        setShoppingCart(newShoppingCart);
+    } */
+    
 
     return (
         <>
@@ -91,12 +157,12 @@ const Product = () => {
                                 <Nav.Link href="/Contact">Contact Us</Nav.Link>
                                  <Nav.Link href="/Aboutus">About Us</Nav.Link>
                                  <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+                                 <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
-                                    className="me-2"
                                     aria-label="Search"
                                     value={search}
                                     onChange={(event) => { searchbox(event) }}
@@ -120,6 +186,7 @@ const Product = () => {
                 <p>In the market for a new vacuum, set of sheets, or a gift for dad? We've got the best product choices to suit all your needs right here.</p>
                 </div>
             </div>
+            
             <div className="product-main">
 
                 <div className="product">
@@ -135,8 +202,8 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Button className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
 
                                 </Card.Body>
                             </Card> : []
@@ -156,9 +223,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
 
@@ -179,9 +246,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -200,9 +267,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -221,9 +288,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -242,9 +309,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -262,9 +329,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -283,9 +350,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -304,9 +371,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -325,9 +392,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -346,9 +413,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -367,9 +434,9 @@ const Product = () => {
                                     <Card.Text>
                                         {item.price}
                                     </Card.Text>
-                                    <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                    <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
 
-                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
+                                    <Link to={`/Product/detail/${item.id}`}><Button variant="warning" className='me-2'>See Detail</Button></Link>
                                 </Card.Body>
                             </Card> : []
                         })}
@@ -396,8 +463,6 @@ const Product = () => {
           </div>
         </div>
       </div>
-
-
 
             </div>
         </>

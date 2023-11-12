@@ -11,11 +11,61 @@ import icon1 from '../media/image/email-icon.png';
 import icon2 from '../media/image/phone-icon.png';
 import icon3 from '../media/image/location-icon.png';
 import pic1 from '../media/picture/photo5.jpg';
-
+import { useState } from 'react';
 
 
 function Contact() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [phone,setPhone] = useState("");
+  const [subject,setSubject] = useState("");
+  const [message,setMessage] = useState("");
+  
+
+  const handleNameChange =  (event) => {
+    const value = event.target.value;
+    setName(value);
+    console.log("Name:",value);
+  };
+  const handleEmailChange =  (event) => {
+    const value = event.target.value;
+    setEmail(value);
+    console.log("Email:",value);
+  };
+  const handlePhoneChange =  (event) => {
+    const value = event.target.value;
+    setPhone(value);
+    console.log("Phone:",value);
+  };
+  const handleSubChange =  (event) => {
+    const value = event.target.value;
+    setSubject(value);
+    console.log("Sub:",value);
+  };
+  const handleMessageChange =  (event) => {
+    const value = event.target.value;
+    setMessage(value);
+    console.log("Message:",value);
+  };
+
+  const handleSumit = (event) =>{
+    event.preventDefault();
+    if(name ==='' | email ==='' | phone ==='' | subject ==='' | message ===''){
+      alert("Please filled Form!");
+    }
+    
+  else{
+    setName('');
+    setEmail('');
+    setPhone('');
+    setSubject('');
+    setMessage('');
+    alert("Form Successfully");
+  }
+  };
+
   return (
     <div>
       <div className="head">
@@ -82,6 +132,7 @@ function Contact() {
                   <Nav.Link href="/Contact">Contact Us</Nav.Link>
                   <Nav.Link href="/Aboutus">About Us</Nav.Link>
                   <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+                  <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
@@ -120,7 +171,7 @@ function Contact() {
               <h3 >Contact Information</h3>
               <ul className='list-unstyle'>
                 <li>
-                  <figure className='figure'>
+                  <figure className='figures'>
                     <img src={icon3} alt='locationicon'></img>
                   </figure>
                   <div className='details'>
@@ -129,7 +180,7 @@ function Contact() {
                   </div>
                 </li>
                 <li>
-                  <figure className='figure'>
+                  <figure className='figures'>
                     <img src={icon2} alt=''></img>
                   </figure>
                   <div className='details'>
@@ -138,7 +189,7 @@ function Contact() {
                   </div>
                 </li>
                 <li >
-                  <figure className='figure'>
+                  <figure className='figures'>
                     <img src={icon1} alt=''></img>
                   </figure>
                   <div className='details'>
@@ -152,22 +203,22 @@ function Contact() {
           <Col className='col-lg-7 form'>
             <div className='form-box'>
               <h2 >Send us a Message</h2>
-              <form className='contact-form'>
+              <form className='contact-form' onSubmit={handleSumit}>
                 <ul className='list-unstyle'>
                   <li>
-                    <input type='text' placeholder='Your name' name='fname' id='fname' required></input>
+                    <input type='text' placeholder='Your name' name='fname' id='fname' value={name} onChange={handleNameChange}></input>
                   </li>
                   <li >
-                    <input type='email' placeholder='Your email' name='fname' id='fname' required></input>
+                    <input type='email' placeholder='Your email' name='fname' id='fname' onChange={handleEmailChange} value={email}></input>
                   </li>
                   <li >
-                    <input type='tel' placeholder='Your phone' name='fname' id='fname' required></input>
+                    <input type='tel' placeholder='Your phone' name='fname' id='fname' value={phone} onChange={handlePhoneChange}></input>
                   </li>
                   <li >
-                    <input type='text' placeholder='Subject' name='fname' id='fname' required></input>
+                    <input type='text' placeholder='Subject' name='fname' id='fname' onChange={handleSubChange} value={subject} ></input>
                   </li>
                   <li >
-                    <textarea placeholder='Message'></textarea>
+                    <textarea placeholder='Message' onChange={handleMessageChange} value={message}></textarea>
                   </li>
                 </ul>
                 <button type='submit' className='btn-submit' id='submit'>Submit Now</button>

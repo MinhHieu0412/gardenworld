@@ -5,10 +5,40 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { useState } from 'react';
+
 import './Login.css';
 function Login() {
+
+  const [password,setPassword] = useState("");
+  const [email,setEmail] = useState("");
+
+  const handlePassChange =  (event) => {
+    const value = event.target.value;
+    setPassword(value);
+    console.log("Password:",value);
+  };
+  const handleEmailChange =  (event) => {
+    const value = event.target.value;
+    setEmail(value);
+    console.log("Email:",value);
+  };
+
+  const handleSumit = (event) =>{
+    event.preventDefault();
+    if(password ==='' | email ===''){
+      alert("Please filled Form!");
+    }
+    
+  else{
+    setPassword('');
+    setEmail('');
+    
+    alert("Done!");
+  }
+  };
+
+
   return (
     <div>
         <div className="head">
@@ -75,6 +105,7 @@ function Login() {
                   <Nav.Link href="/Contact">Contact Us</Nav.Link>
                   <Nav.Link href="/Aboutus">About Us</Nav.Link>
                   <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+                  <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
@@ -96,14 +127,14 @@ function Login() {
     <section>
         <div className='form-boxes'>
             <div className='form-value'>
-                <form action=''>
+                <form action='' onSubmit={handleSumit}>
                     <h2>Login</h2>
                     <div className='inputbox'>
-                        <input type='email' required></input>
+                        <input type='email' value={email} onChange={handleEmailChange}></input>
                         <label>Email</label>
                     </div>
                     <div className='inputbox'>
-                        <input type='password' required></input>
+                        <input type='password' value={password} onChange={handlePassChange}></input>
                         <label>Password</label>
                     </div>
                     <div className='forget'>
@@ -111,7 +142,7 @@ function Login() {
                     </div>
                     <button type='submit'>Login</button>
                     <div className='register'>
-                        <p>Dawn ki<a href='#'>Register</a></p>
+                        <p><a href='#'>Register</a></p>
                     </div>
                 </form>
 

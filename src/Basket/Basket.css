@@ -1,0 +1,37 @@
+.table-cart{
+    margin-top: 80px;
+}
+.thead th{
+    background-color: #52D681;
+    font-size: 20px;
+}
+.btn-delete{
+    background: #B5FF7D;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+.content-shopping{
+    margin-top: 60px;
+    display: flex;
+}
+.content-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-cart{
+    text-align: center;
+}
+.text-cart h2{
+    font-size: 40px;
+    font-weight: 600;
+    color: gray;
+}
+.text-cart h4{
+    font-size: 20px;
+    color: gray;
+}
+.image4{
+    width: 90%;
+}

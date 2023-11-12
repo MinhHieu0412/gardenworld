@@ -53,6 +53,43 @@ const Home = () => {
         setsearch(event.target.value)
     }
 
+    let productIncard = localStorage.getItem("products")? JSON.parse(localStorage.getItem("products")):[]
+    const addTocart = (id) =>{
+        let checkProduct = productIncard.some(value => value.id ===id)
+        if(!checkProduct){
+            let product = Detaildata.find(value => value.id ===id)
+            productIncard.unshift({
+                ...product,
+                quantity: 1
+            })
+           saveToLocalStorage()
+            calculatorTotal()
+        } else{
+            let getIndex = productIncard.findIndex(value => value.id === id)
+            let product = productIncard.find(value => value.id === id)
+            productIncard[getIndex] ={
+                ...product,
+                quantity: ++product.quantity
+            }
+            saveToLocalStorage()
+            calculatorTotal()
+        }
+        alert("Successfully!");
+    
+    }
+
+    
+
+    const calculatorTotal = () => {
+        document.getElementById('total').innerHTML = productIncard.length;
+    }
+
+   
+
+    const saveToLocalStorage = () => {
+        localStorage.setItem("products", JSON.stringify(productIncard));
+    }
+
 
 
 
@@ -119,7 +156,9 @@ const Home = () => {
                                         </NavDropdown>
                                         <Nav.Link href="/Contact">Contact Us</Nav.Link>
                                         <Nav.Link href="/Aboutus">About Us</Nav.Link>
+                                        <Nav.Link href="/Basket">Cart</Nav.Link>
                                         <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
+                                        <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                                     </Nav>
                                     <Form className="d-flex">
                                         <Form.Control
@@ -182,14 +221,14 @@ const Home = () => {
                         <div className="responsive-1100">
                             {productdemo.map((item) => {
                                 return item.id > num1 && item.id <= num2 ?
-                                    <Card style={{ width: '16rem' }} key={Math.floor(Math.random() * 10000)} >
+                                    <Card style={{ width: '17rem' }} key={Math.floor(Math.random() * 10000)} >
                                         <Card.Img variant="top" src={require(`${item.picture}`)} />
                                         <Card.Body>
                                             <Card.Title>{item.name}</Card.Title>
                                             <Card.Text>
                                                 {item.price}
                                             </Card.Text>
-                                            <Button variant="primary" className='me-3'>Add To Cart</Button>
+                                            <Button variant="primary" className='me-3' onClick={() => addTocart(item.id)}>Add To Cart</Button>
                                             <Link to={`/Product/detail/${item.id}`}><Button variant="warning">See Detail</Button></Link>
                                         </Card.Body>
 
