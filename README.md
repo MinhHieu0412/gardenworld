@@ -7,7 +7,7 @@
 <div  align="center">
 
 
-<img  src="./src/media/picture/Screenshot 2023-11-13 174518.png"  alt="Logo"  width="300px"  height="auto">
+<img  src="./src/media/picture/Screenshot 2023-11-13 174518.png"  alt="Logo"  width="1000px"  height="auto">
 
 </a>
 
