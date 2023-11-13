@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+<a  name="readme-top"></a>
+  
+<!-- GRACIOUS GARMENTS -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br  />
 
-## Available Scripts
+<div  align="center">
 
-In the project directory, you can run:
 
-### `npm start`
+<img  src="./src/media/picture/Screenshot 2023-11-13 174518.png"  alt="Logo"  width="300px"  height="auto">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  
 
-### `npm test`
+<h3  align="center">Garden World</h3>
+  
+  <a  href="https://github.com/MinhHieu0412/gardenworld"><strong>Explore the source »</strong></a>
+  <a  href="https://github.com/MinhHieu0412/gardenworld/tree/master/document" target="_blank"><strong>Explore the documents »</strong></a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  <br  /><a  href="https://gardenworld.vercel.app/" target="_blank">View Demo</a>  . <a  href="#" target="_blank">Video</a>
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ### Built With
+  Below is the languages/libraries we used for this project:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  
+  
 
-### `npm run eject`
+![HTML]&nbsp;![CSS3] &nbsp;![JS]&nbsp;![SASS]&nbsp;![REACT]
+<div  align="left">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  
+### Features </br>
+<ol>
+<li>
+ Home page with suitable logo and related banners/information.</br>
+</li>
+<li>
+There should be menu with submenu (as per requirement)  </br>
+</li>
+<li>
+Users should be able to find information regarding various gardening
+techniques/tips for better gardening</br>
+</li>
+<li>
+There should be list of different tools needed for gardening along with the
+information as how to use, sample videos.
+</br>
+</li>
+<li>
+Along with the tools site should also include the information on
+a. Soil & fertilizers
+b. Pesticides for plants
+c. Seeds details</br>
+</li>
+<li>
+There should be a section for selecting proper pots/pot plates, wall
+mounted/wall hanging brackets , pot hangers, railing brackets etc</br>
+</li>
+<li>
+A section including following accessories should also be there
+a. Miniature garden toys
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+b. Gardening accessories
+c. Decorative pebbles</br>
+</li>
+<li>
+There should be a special section where suggestions for buying various
+related products can be provided.</li></br>
+<li>
+Informative and illustrative videos are welcomed in the website (keep the size
+limited)</br>
+</li>
+<li>
+There should also be a section where user can check for some related books</br>
+</li>
+</ol>
 
-## Learn More
+ ## Members of group 1
+ ### Leader : Nguyen Minh Hieu`Student1491500`
+### Members:
+Nguyen Lam Son`Student1491486` </br>
+Phan Sy Nguyen `Student1496446` </br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+[HTML]:https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[CSS3]:https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[JS]:https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[SASS]:https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
+[REACT]:https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFBgit 
