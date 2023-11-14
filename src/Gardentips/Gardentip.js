@@ -27,7 +27,7 @@ import pic23 from '../media/image/10.webp';
 import pic24 from '../media/image/sunlight.webp';
 import pic25 from '../media/image/photo3.jpg';
 
-
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import video1 from '../media/audio/growplant.mp4';
 import video2 from '../media/audio/growstrawberry.mp4';
@@ -39,6 +39,12 @@ function Gardentip() {
     AOS.init({ duration: 2000 })
 
   }, [])
+
+  const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
+
 
   return (
     <>
@@ -108,13 +114,15 @@ function Gardentip() {
                 <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
               </Nav>
               <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
+              <Form.Control
+                                            type="search"
+                                            placeholder="Search"
+                                            className="me-2"
+                                            aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
+                                        />
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
               </Form>
             </Navbar.Collapse>
 

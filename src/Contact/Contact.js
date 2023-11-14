@@ -12,6 +12,7 @@ import icon2 from '../media/image/phone-icon.png';
 import icon3 from '../media/image/location-icon.png';
 import pic1 from '../media/picture/photo5.jpg';
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 
 function Contact() {
@@ -65,6 +66,11 @@ function Contact() {
     alert("Form Successfully");
   }
   };
+
+  const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
 
   return (
     <div>
@@ -135,13 +141,16 @@ function Contact() {
                   <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                 </Nav>
                 <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
+                <Form.Control
+                                            type="search"
+                                            placeholder="Search"
+                                            className="me-2"
+                                            aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
+                                        />
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
+                  
                 </Form>
               </Navbar.Collapse>
 

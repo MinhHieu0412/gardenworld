@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState } from 'react';
-
+import { Link } from "react-router-dom";
 import './Login.css';
 function Login() {
 
@@ -37,6 +37,10 @@ function Login() {
     alert("Done!");
   }
   };
+  const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
 
 
   return (
@@ -108,13 +112,16 @@ function Login() {
                   <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                 </Nav>
                 <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
+                <Form.Control
+                                            type="search"
+                                            placeholder="Search"
+                                            className="me-2"
+                                            aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
+                                        />
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
+                  
                 </Form>
               </Navbar.Collapse>
 

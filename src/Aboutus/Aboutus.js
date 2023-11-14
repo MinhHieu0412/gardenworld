@@ -6,16 +6,21 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import { Link } from "react-router-dom";
 import './AboutUs.scss';
 import image5 from '../media/picture/photo5.jpg';
 import image4 from '../media/picture/photo10.jpg';
 import image3 from '../media/picture/photo11.jpg';
 import image2 from '../media/picture/photo13.jpg';
 import image1 from '../media/picture/photo14.webp';
+import { useState } from "react";
 
 function AboutUs() {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
   return (
     <div className='about-us'>
         <div className="head">
@@ -85,13 +90,16 @@ function AboutUs() {
                   <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                 </Nav>
                 <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
+                <Form.Control
+                                            type="search"
+                                            placeholder="Search"
+                                            className="me-2"
+                                            aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
+                                        />
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
+                 
                 </Form>
               </Navbar.Collapse>
 

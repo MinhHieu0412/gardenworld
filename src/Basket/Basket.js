@@ -7,8 +7,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Basket.css';
-
+import { useState } from "react";
 import pic1 from '../media/picture/cartimage1.webp';
+import { Link } from "react-router-dom";
 
 const Basket = () => {
 
@@ -64,7 +65,10 @@ const Basket = () => {
         )
     }
    
-    
+    const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
 
   return (
     <div>
@@ -132,13 +136,15 @@ const Basket = () => {
                                         <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                                     </Nav>
                                     <Form className="d-flex">
-                                        <Form.Control
+                                    <Form.Control
                                             type="search"
                                             placeholder="Search"
                                             className="me-2"
                                             aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
                                         />
-                                        <Button variant="outline-success">Search</Button>
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
                                     </Form>
                                 </Navbar.Collapse>
 

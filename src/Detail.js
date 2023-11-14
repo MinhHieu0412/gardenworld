@@ -12,7 +12,7 @@ import Detaildata from './Detaildata.json';
 import { useParams } from 'react-router';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-
+import { useState } from 'react';
 const Accessories1 = () => {
 
     let { id } = useParams();
@@ -61,7 +61,10 @@ const Accessories1 = () => {
         localStorage.setItem("products", JSON.stringify(productIncard));
     }
 
-
+    const [search, setsearch] = useState("")
+    const searchbox = (event) => {
+        setsearch(event.target.value)
+    }
 
 
     return (
@@ -132,13 +135,15 @@ const Accessories1 = () => {
                                 <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                             </Nav>
                             <Form className="d-flex">
-                                <Form.Control
-                                    type="search"
-                                    placeholder="Search"
-                                    className="me-2"
-                                    aria-label="Search"
-                                />
-                                <Button variant="outline-success">Search</Button>
+                            <Form.Control
+                                            type="search"
+                                            placeholder="Search"
+                                            className="me-2"
+                                            aria-label="Search"
+                                            value={search}
+                                            onChange={(event) => { searchbox(event) }}
+                                        />
+                                        <Link to={`/Product/search/${search}`}><Button variant="outline-success">Search</Button></Link>
                             </Form>
                         </Navbar.Collapse>
 
