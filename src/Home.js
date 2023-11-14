@@ -156,7 +156,6 @@ const Home = () => {
                                         </NavDropdown>
                                         <Nav.Link href="/Contact">Contact Us</Nav.Link>
                                         <Nav.Link href="/Aboutus">About Us</Nav.Link>
-                                        <Nav.Link href="/Basket">Cart</Nav.Link>
                                         <Nav.Link href="/Login"><i class="bi bi-people-fill"></i>Login</Nav.Link>
                                         <Nav.Link href="/Basket"><i class="bi bi-cart-fill">:</i><span id='total'>0</span></Nav.Link>
                                     </Nav>
